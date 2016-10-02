@@ -1,7 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
 var autoprefixer = require('autoprefixer');
+var AssetsPlugin = require('assets-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
@@ -30,9 +30,10 @@ module.exports = {
     path: path.join(__dirname, 'web'),
     filename: '[name]_[chunkhash].js',
     chunkFilename: '[name]_[chunkhash].js',
-    publicPath: '/'
+    publicPath: '/dist/'
   },
   plugins: [
+    new AssetsPlugin({ filename: 'assets.json' }),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: '"production"'

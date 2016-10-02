@@ -1,6 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 var autoprefixer = require('autoprefixer');
+var AssetsPlugin = require('assets-webpack-plugin');
 var DashboardPlugin = require('webpack-dashboard/plugin');
 
 module.exports = {
@@ -32,7 +33,7 @@ module.exports = {
     pathinfo: true,
     filename: '[name]_[hash].js',
     chunkFilename: '[name]_[hash].js',
-    publicPath: '/'
+    publicPath: '/dist/'
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -46,6 +47,7 @@ module.exports = {
       names: ['react', 'vendor'],
       minChunks: Infinity
     }),
+    new AssetsPlugin({ filename: 'assets.json' }),
     new DashboardPlugin()
   ],
   resolve: {
@@ -101,7 +103,7 @@ module.exports = {
         exclude: [/globalStyles/],
         loaders: [
           'style',
-          'css?modules&importLoaders=2&localIdentName=[name]__[local]___[hash:base64:5]',
+          'css?modules&importLoaders=2&localIdentName=[name]__[local]__[hash:base64:5]',
           'sass'
         ],
       },

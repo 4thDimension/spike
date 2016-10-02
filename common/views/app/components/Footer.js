@@ -6,8 +6,7 @@ const Footer = () => (
   <footer className="footer">
     <div className="container">
       <div className="content has-text-centered">
-        Copyright© 2016. Orion Health group of companies.
-        All rights reserved Solutions for Products About Us Knowledge Hub Support Privacy Policy
+        Copyright© 2016. Next Home
       </div>
     </div>
   </footer>

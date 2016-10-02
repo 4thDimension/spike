@@ -1,4 +1,4 @@
 module.exports = {
-  generateScopedName: '[name]_[local]__[hash:base64:5]',
+  generateScopedName: '[name]__[local]__[hash:base64:5]',
   extensions: ['.scss', '.css']
 };

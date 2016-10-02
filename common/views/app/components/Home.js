@@ -5,10 +5,10 @@ const Home = () => (
     <div className="hero-body">
       <div className="container">
         <h1 className="title">
-          Data Engine
+          Next Home
         </h1>
         <h2 className="subtitle">
-          Amadeus
+          Next Generation Renting App
         </h2>
       </div>
     </div>

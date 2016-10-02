@@ -1,7 +1,7 @@
 import { trigger } from 'redial';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, browserHistory, match } from 'react-router/es6';
+import { Router, browserHistory, match } from 'react-router';
 import { Provider } from 'react-redux';
 import configureStore from '../common/store/createStore';
 
@@ -34,9 +34,10 @@ const render = () => {
     );
   });
 
-  return browserHistory.listen((location1) => {
+  /* eslint no-shadow: 0 */
+  return browserHistory.listen((location) => {
     // Match views based on location object:
-    match({ routes, location1 }, (error, redirectLocation, renderProps) => {
+    match({ routes, location }, (error, redirectLocation, renderProps) => {
       if (error) console.log(error);
       // Get array of route handler components:
       const { components } = renderProps;

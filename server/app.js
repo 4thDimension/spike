@@ -3,7 +3,9 @@ import helmet from 'helmet';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import compression from 'compression';
+import serveStatic from 'serve-static';
 import hpp from 'hpp';
+import path from 'path';
 
 import React from 'react';
 import ReactDOM from 'react-dom/server';
@@ -19,7 +21,7 @@ const __PROD__ = process.env.NODE_ENV === 'production';
 const __TEST__ = process.env.NODE_ENV === 'test';
 const port = process.env.PORT || 8080;
 const server = express();
-let assets;
+const assets = require('../assets.json');
 server.disable('x-powered-by');
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
@@ -29,7 +31,6 @@ if (__PROD__ || __TEST__) {
   server.use(helmet());
   server.use(hpp());
   server.use(compression());
-  assets = require('../assets.json');
 } else {
   server.use(morgan('dev'));
   const config = require('../webpack/dev');
@@ -40,10 +41,10 @@ if (__PROD__ || __TEST__) {
 
   const compiler = webpack(config);
   compiler.apply(new DashboardPlugin());
-  server.use(webpackDevMiddleware(compiler, { quiet: true }));
+  server.use(webpackDevMiddleware(compiler, { publicPath: "/dist/", quiet: true }));
   server.use(webpackHotMiddleware(compiler, { log: console.log }));
 }
-server.use(express.static('public'));
+server.use(serveStatic(path.join(__dirname, 'dist')));
 
 server.get('*', (req, res) => {
   const store = configureStore();
@@ -96,8 +97,9 @@ server.get('*', (req, res) => {
             <body>
               <div id="root">${html}</div>
               <script>window.INITIAL_STATE = ${JSON.stringify(initialState)};</script>
-              <script src="${ __PROD__ ? assets.vendor.js : '/vendor.js' }"></script>
-              <script async src="${ __PROD__ ? assets.main.js : '/main.js' }" ></script>
+              <script src="${assets.vendor.js}"></script>
+              <script src="${assets.react.js}"></script>
+              <script async src="${assets.app.js}"></script>
             </body>
           </html>
         `);
