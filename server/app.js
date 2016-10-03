@@ -16,7 +16,7 @@ import ReactHelmet from 'react-helmet';
 import configureStore from '../common/store/createStore';
 import createRoutes from '../common/rootRouter';
 
-let assets;
+let assets = require('../assets.json');
 
 const __PROD__ = process.env.NODE_ENV === 'production';
 const __TEST__ = process.env.NODE_ENV === 'test';
@@ -96,6 +96,10 @@ server.get('*', (req, res) => {
               <link rel="shortcut icon" href="/favicon.ico">
               ${head.meta.toString()}
               ${head.link.toString()}
+              <link
+                href="${assets.app.css}"
+                media="screen, projection"
+                rel="stylesheet" type="text/css" charSet="UTF-8" />
             </head>
             <body>
               <div id="root">${html}</div>

@@ -1,1 +1,3 @@
-{"app":{"js":"/dist/app_5083cca2ec86b9ad3495.js"},"react":{"js":"/dist/react_c5a015ba3a5deec807e4.js"},"vendor":{"js":"/dist/vendor_5083cca2ec86b9ad3495.js"}}
+{"vendor":{"js":"/dist/vendor_9ea9cc11c62d941847ae.js"},
+  "react":{"js":"/dist/react_606fb9b2bde3b31bc9ae.js"},
+  "app":{"js":"/dist/app_38abcb8e8d0231072de4.js","css":"/dist/style.css"}}

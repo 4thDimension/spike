@@ -4,9 +4,9 @@
   "description": "nexthome",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config webpack.config.dev.js",
-    "build:prod": "webpack -p --config webpack/prod.js",
+    "build": "NODE_ENV=production webpack -p --config webpack/production.js",
     "start": "webpack-dashboard -- node ./server/index.js",
+    "start:prod": "NODE_ENV=production node ./server/index.js",
     "test": "nyc --require babel-core/register mocha test",
     "report": "nyc report",
     "check-coverage": "nyc check-coverage --lines 80 --functions 70 --branches 50 --statements 80"

@@ -27,7 +27,7 @@ module.exports = {
     ]
   },
   output: {
-    path: path.resolve(__dirname, '../assets/dist'),
+    path: path.join(__dirname, '..', '/assets/dist'),
     filename: '[name]_[chunkhash].js',
     chunkFilename: '[name]_[chunkhash].js',
     publicPath: '/dist/'
@@ -39,9 +39,7 @@ module.exports = {
         NODE_ENV: '"production"'
       }
     }),
-    new ExtractTextPlugin({
-      filename: '[name].css'
-    }),
+    new ExtractTextPlugin("style.css"),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.CommonsChunkPlugin({
