@@ -39,7 +39,7 @@ module.exports = {
         NODE_ENV: '"production"'
       }
     }),
-    new ExtractTextPlugin("style.css"),
+    new ExtractTextPlugin('[name].[chunkhash].css'),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.CommonsChunkPlugin({
