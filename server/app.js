@@ -16,12 +16,12 @@ import ReactHelmet from 'react-helmet';
 import configureStore from '../common/store/createStore';
 import createRoutes from '../common/rootRouter';
 
+let assets;
 
 const __PROD__ = process.env.NODE_ENV === 'production';
 const __TEST__ = process.env.NODE_ENV === 'test';
 const port = process.env.PORT || 8080;
 const server = express();
-const assets = require('../assets.json');
 server.disable('x-powered-by');
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
@@ -41,10 +41,13 @@ if (__PROD__ || __TEST__) {
 
   const compiler = webpack(config);
   compiler.apply(new DashboardPlugin());
-  server.use(webpackDevMiddleware(compiler, { publicPath: "/dist/", quiet: true }));
+  compiler.plugin('done', () => {
+    assets = require('../assets.json');
+  });
+  server.use(webpackDevMiddleware(compiler, { publicPath: '/dist/', quiet: true }));
   server.use(webpackHotMiddleware(compiler, { log: console.log }));
 }
-server.use(serveStatic(path.join(__dirname, 'dist')));
+server.use(serveStatic(path.join(__dirname, '..', 'assets')));
 
 server.get('*', (req, res) => {
   const store = configureStore();

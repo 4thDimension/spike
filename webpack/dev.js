@@ -4,6 +4,7 @@ var autoprefixer = require('autoprefixer');
 var AssetsPlugin = require('assets-webpack-plugin');
 var DashboardPlugin = require('webpack-dashboard/plugin');
 
+console.log(path.join(__dirname, '..', '/assets/dist'));
 module.exports = {
   devtool: '#source-map',
   entry: {
@@ -29,7 +30,7 @@ module.exports = {
     ]
   },
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, '..', '/assets/dist'),
     pathinfo: true,
     filename: '[name]_[hash].js',
     chunkFilename: '[name]_[hash].js',
@@ -57,7 +58,7 @@ module.exports = {
   },
   module: {
     preLoaders: [
-      { test: /\.js$/, loader: "eslint-loader", exclude: /node_modules/ }
+      { test: /\.js$/, loader: 'eslint-loader', exclude: /node_modules/ }
     ],
     loaders: [
       {

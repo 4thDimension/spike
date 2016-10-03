@@ -27,7 +27,7 @@ module.exports = {
     ]
   },
   output: {
-    path: path.join(__dirname, 'web'),
+    path: path.resolve(__dirname, '../assets/dist'),
     filename: '[name]_[chunkhash].js',
     chunkFilename: '[name]_[chunkhash].js',
     publicPath: '/dist/'
@@ -40,7 +40,7 @@ module.exports = {
       }
     }),
     new ExtractTextPlugin({
-      filename: "[name].css"
+      filename: '[name].css'
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.DedupePlugin(),
@@ -73,7 +73,7 @@ module.exports = {
   },
   module: {
     preLoaders: [
-      { test: /\.js$/, loader: "eslint-loader", exclude: /node_modules/}
+      { test: /\.js$/, loader: 'eslint-loader', exclude: /node_modules/ }
     ],
     loaders: [
       // don't remove exclude, there is some issue with babel 6
