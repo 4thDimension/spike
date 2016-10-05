@@ -2,7 +2,12 @@ import typeToReducer from 'type-to-reducer';
 import jwtDecode from 'jwt-decode';
 import { loginError, loginSuccess, logoutSuccess } from './authActions';
 
+// TODO hack for isomorphic rendering
+const isClient = () => typeof window !== 'undefined';
 const checkTokenExpiry = () => {
+  if (!isClient()) {
+    return false;
+  }
   const jwt = localStorage.getItem('id_token');
   if (jwt) {
     const jwtExp = jwtDecode(jwt).exp;
@@ -16,7 +21,13 @@ const checkTokenExpiry = () => {
   return false;
 };
 
-const getProfile = () => JSON.parse(localStorage.getItem('profile'));
+const getProfile = () => {
+  if (!isClient()) {
+    return null;
+  }
+  return JSON.parse(localStorage.getItem('profile'));
+};
+
 const initialState = {
   isAuthenticated: checkTokenExpiry(),
   profile: getProfile(),
@@ -43,6 +54,4 @@ export default typeToReducer({
     error: ''
   })
 }, initialState);
-
-
 
