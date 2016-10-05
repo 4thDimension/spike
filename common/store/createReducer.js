@@ -1,10 +1,9 @@
 import { combineReducers } from 'redux';
-
-const dummyReducer = (state = {}) => state;
+import authReducer from '../views/auth/authReducer';
 
 export default function createReducer(asyncReducers = {}) {
   return combineReducers({
-    dummyReducer,
+    authReducer,
     ...asyncReducers
   });
 }

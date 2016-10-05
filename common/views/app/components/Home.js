@@ -6,7 +6,9 @@ const Home = () => (
       <div className="hero-body">
         <div className="container">
           <h1 className="title">
-            Next Home
+            Next <span className="icon is-medium">
+              <i className="fa fa-home" />
+            </span>ome
           </h1>
           <h2 className="subtitle">
             Next Generation Renting App

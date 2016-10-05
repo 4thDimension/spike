@@ -15,9 +15,9 @@ import { trigger } from 'redial';
 import ReactHelmet from 'react-helmet';
 import configureStore from '../common/store/createStore';
 import createRoutes from '../common/rootRouter';
+import testAPI from './api/test';
 
-let assets = require('../assets.json');
-
+let assets;
 const __PROD__ = process.env.NODE_ENV === 'production';
 const __TEST__ = process.env.NODE_ENV === 'test';
 const port = process.env.PORT || 8080;
@@ -27,6 +27,8 @@ server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
 
 if (__PROD__ || __TEST__) {
+  assets = require('../assets.json');
+
   server.use(morgan('combined'));
   server.use(helmet());
   server.use(hpp());
@@ -49,6 +51,7 @@ if (__PROD__ || __TEST__) {
 }
 server.use(serveStatic(path.join(__dirname, '..', 'assets')));
 
+server.use('/api/test', testAPI);
 server.get('*', (req, res) => {
   const store = configureStore();
   const routes = createRoutes(store);
