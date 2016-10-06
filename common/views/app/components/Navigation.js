@@ -2,11 +2,12 @@ import React, { PropTypes, Component } from 'react';
 import CSSModules from 'react-css-modules';
 import { Link } from 'react-router';
 import css from '../styles/navigation.scss';
-import { login } from '../../auth';
 
 const propTypes = {
-  location: PropTypes.object
+  location: PropTypes.object,
+  login: PropTypes.func
 };
+
 /* eslint jsx-a11y/href-no-hash: 0 */
 class Navigation extends Component {
   constructor(props) {
@@ -14,14 +15,14 @@ class Navigation extends Component {
     this.handleLoginAction = ::this.handleLoginAction;
   }
   handleLoginAction() {
-    login();
+    this.props.login();
   }
   render() {
     return (
       <nav className="nav" styleName="headerNav">
         <div className="nav-left">
           <span
-            className="nav-item is-brand"
+            className="nav-item is-brand" styleName="login"
             onClick={this.handleLoginAction}
           >
             Login

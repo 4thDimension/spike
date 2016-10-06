@@ -1,1 +1,1 @@
-export { login, logout } from './authActions';
+export { login, logout, testThunk } from './authActions';

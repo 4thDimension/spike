@@ -37,3 +37,8 @@ export const logout = () => (
   }
 );
 
+export const testThunk = () => (
+  dipatch => {
+    alert(dipatch);
+  }
+);

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import DevTools from './components/DevTools';
-import Navigation from './components/Navigation';
+import NavigationContainer from './containers/NavigationContainer';
 import Footer from './components/Footer';
 
 require('../../../globalStyles/customBulma.scss');
@@ -13,7 +13,7 @@ const App = (props) => {
   const devTools = process.env.NODE_ENV !== 'production' ? <DevTools /> : null;
   return (
     <div id="mainView">
-      <Navigation {...props} />
+      <NavigationContainer {...props} />
       {props.children}
       <Footer />
       {devTools}
