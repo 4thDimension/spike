@@ -44,6 +44,8 @@ if (__PROD__ || __TEST__) {
   const compiler = webpack(config);
   compiler.apply(new DashboardPlugin());
   compiler.plugin('done', () => {
+    const assetsJsonPath = path.resolve(__dirname, '..', 'assets.json');
+    delete require.cache[assetsJsonPath];
     assets = require('../assets.json');
   });
   server.use(webpackDevMiddleware(compiler, { publicPath: '/dist/', quiet: true }));

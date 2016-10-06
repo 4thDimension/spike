@@ -14,7 +14,15 @@ export const login = () => {
   }
   const Auth0Lock = require('auth0-lock').default;
 
-  const lock = new Auth0Lock('b7Qfj5hASoI5m6RjYNZ7xC3yLpZrbtnv', 'nexthome.au.auth0.com');
+  const lock = new Auth0Lock(
+    'b7Qfj5hASoI5m6RjYNZ7xC3yLpZrbtnv',
+    'nexthome.au.auth0.com',
+    {
+      auth: {
+        responseType: 'token'
+      }
+    }
+  );
   return dispatch => {
     lock.show((err, profile, token) => {
       if (err) {
