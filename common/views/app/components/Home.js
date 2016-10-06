@@ -1,8 +1,10 @@
 import React from 'react';
+import CSSModules from 'react-css-modules';
+import css from '../styles/home.scss';
 
 const Home = () => (
   <div>
-    <section className="hero is-success is-fullheight">
+    <section className="hero is-fullheight" styleName="hero">
       <div className="hero-body">
         <div className="container">
           <h1 className="title">
@@ -19,4 +21,5 @@ const Home = () => (
   </div>
 );
 
-export default Home;
+export default CSSModules(Home, css);
+

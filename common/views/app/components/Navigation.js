@@ -21,18 +21,26 @@ class Navigation extends Component {
     return (
       <nav className="nav" styleName="headerNav">
         <div className="nav-left">
-          <span
-            className="nav-item is-brand" styleName="login"
-            onClick={this.handleLoginAction}
-          >
-            Login
-          </span>
-          <Link className="nav-item" to="/search">
-            <span className="icon">
-              <i className="fa fa-about" />
-            </span>
-            <span> About </span>
+          <div className="nav-item">
+            <h2>
+              Next
+              <span className="icon is-medium">
+                <i className="fa fa-home" />
+              </span>
+              ome
+            </h2>
+          </div>
+        </div>
+        <div className="nav-right nav-menu">
+          <Link className="nav-item" to="/why">
+            What
           </Link>
+          <Link className="nav-item" to="/who">
+            Who
+          </Link>
+          <a className="nav-item" onClick={this.handleLoginAction}>
+            Login
+          </a>
         </div>
       </nav>
     );
