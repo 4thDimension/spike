@@ -19,7 +19,8 @@ class Navigation extends Component {
     this.props.login();
   }
   render() {
-    const { isAuthenticated, profile: { username } } = this.props.authInfo;
+    const { isAuthenticated, profile } = this.props.authInfo;
+    const { username } = profile || {};
     return (
       <nav className="nav" styleName="headerNav">
         <div className="nav-left">
