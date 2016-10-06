@@ -54,7 +54,8 @@ if (__PROD__ || __TEST__) {
 server.use(serveStatic(path.join(__dirname, '..', 'assets')));
 
 server.use('/api/test', testAPI);
-server.get('*', (req, res) => {
+server.use('*', (req, res) => {
+  console.log(req.body);
   const store = configureStore();
   const routes = createRoutes(store);
   const history = createMemoryHistory(req.originalUrl);
@@ -108,7 +109,10 @@ server.get('*', (req, res) => {
             </head>
             <body>
               <div id="root">${html}</div>
-              <script>window.INITIAL_STATE = ${JSON.stringify(initialState)};</script>
+              <script>
+                window.INITIAL_STATE = ${JSON.stringify(initialState)};
+                window.localstorage 
+                </script>
               <script src="${assets.vendor.js}"></script>
               <script src="${assets.react.js}"></script>
               <script async src="${assets.app.js}"></script>

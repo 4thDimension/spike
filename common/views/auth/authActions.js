@@ -18,19 +18,25 @@ export const login = () => {
     'b7Qfj5hASoI5m6RjYNZ7xC3yLpZrbtnv',
     'nexthome.au.auth0.com',
     {
+      autoclose: true,
       auth: {
-        responseType: 'token'
+        responseType: 'token',
+        redirect: false
       }
     }
   );
   return dispatch => {
-    lock.show((err, profile, token) => {
-      if (err) {
-        return dispatch(loginError(err));
-      }
-      localStorage.setItem('profile', JSON.stringify(profile));
-      localStorage.setItem('id_token', token);
-      return dispatch(loginSuccess(profile));
+    lock.show();
+    lock.on('authenticated', (authResult) => {
+      lock.getProfile(authResult.idToken, (error, profile) => {
+        if (error) {
+          dispatch(loginError(error));
+          return;
+        }
+        localStorage.setItem('idToken', authResult.idToken);
+        localStorage.setItem('profile', JSON.stringify(profile));
+        dispatch(loginSuccess(profile));
+      });
     });
   };
 };

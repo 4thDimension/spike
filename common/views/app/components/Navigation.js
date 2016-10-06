@@ -5,7 +5,8 @@ import css from '../styles/navigation.scss';
 
 const propTypes = {
   location: PropTypes.object,
-  login: PropTypes.func
+  login: PropTypes.func,
+  authInfo: PropTypes.object
 };
 
 /* eslint jsx-a11y/href-no-hash: 0 */
@@ -18,6 +19,7 @@ class Navigation extends Component {
     this.props.login();
   }
   render() {
+    const { isAuthenticated, profile: { username } } = this.props.authInfo;
     return (
       <nav className="nav" styleName="headerNav">
         <div className="nav-left">
@@ -39,7 +41,11 @@ class Navigation extends Component {
             Who
           </Link>
           <a className="nav-item" onClick={this.handleLoginAction}>
-            Login
+            {
+              isAuthenticated
+                ? username
+                : 'Login'
+            }
           </a>
         </div>
       </nav>
