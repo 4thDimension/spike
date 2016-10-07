@@ -16,6 +16,7 @@ import ReactHelmet from 'react-helmet';
 import configureStore from '../common/store/createStore';
 import createRoutes from '../common/rootRouter';
 import testAPI from './api/test';
+import graphql from './api/graphql';
 
 let assets;
 const __PROD__ = process.env.NODE_ENV === 'production';
@@ -54,6 +55,7 @@ if (__PROD__ || __TEST__) {
 server.use(serveStatic(path.join(__dirname, '..', 'assets')));
 
 server.use('/api/test', testAPI);
+server.use('/graphql', graphql);
 server.use('*', (req, res) => {
   console.log(req.body);
   const store = configureStore();
