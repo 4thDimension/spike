@@ -16,6 +16,7 @@ import ReactHelmet from 'react-helmet';
 import configureStore from '../common/store/createStore';
 import createRoutes from '../common/rootRouter';
 import testAPI from './api/test';
+import tenantAPI from './api/tenant.api';
 import graphql from './api/graphql';
 
 let assets;
@@ -55,6 +56,7 @@ if (__PROD__ || __TEST__) {
 server.use(serveStatic(path.join(__dirname, '..', 'assets')));
 
 server.use('/api/test', testAPI);
+server.use('/api/tenant', tenantAPI);
 server.use('/graphql', graphql);
 server.use('*', (req, res) => {
   console.log(req.body);
@@ -113,7 +115,7 @@ server.use('*', (req, res) => {
               <div id="root">${html}</div>
               <script>
                 window.INITIAL_STATE = ${JSON.stringify(initialState)};
-                window.localstorage 
+                window.localstorage
                 </script>
               <script src="${assets.vendor.js}"></script>
               <script src="${assets.react.js}"></script>
