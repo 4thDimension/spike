@@ -1,7 +1,7 @@
 // Very basic, Kishore to improve :)
 
 import { Router } from 'express';
-import * as tenantService from './tenant.service';
+import * as tenantService from '../api/tenant/tenant.service';
 import graphqlHTTP from 'express-graphql';
 import { GraphQLObjectType, GraphQLString, GraphQLNonNull, GraphQLSchema } from 'graphql';
 

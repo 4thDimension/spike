@@ -4,7 +4,6 @@ import * as service from './tenant.service';
 
 import { Router } from 'express';
 
-// "/api/tenant"
 const router = Router();
 
 const getTenant = (req, res) => service.get(req.params.id).then((doc) => res.json(doc));
@@ -17,4 +16,7 @@ router.post('/', createTenant);
 router.put('/:id', updateTenant);
 router.delete('/:id', deleteTenant);
 
-export default router;
+export default {
+  rootUrl: "tenant",
+  router
+};

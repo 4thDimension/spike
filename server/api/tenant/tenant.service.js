@@ -1,6 +1,6 @@
 // Very basic, Kishore to improve :)
 
-import db from '../db';
+import db from '../../db';
 
 import { Schema } from 'mongoose';
 
