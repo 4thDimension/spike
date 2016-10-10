@@ -1,11 +1,13 @@
-import express from 'express';
+// Very basic, Kishore to improve :)
+
+import { Router } from 'express';
 import * as tenantService from './tenant.service';
 import graphqlHTTP from 'express-graphql';
 import { GraphQLObjectType, GraphQLString, GraphQLNonNull, GraphQLSchema } from 'graphql';
 
-const router = express.Router();
+const router = Router();
 
-const resolveTenant = (root, { id }) => tenantService.get(id).then((doc) => doc);
+const resolveTenant = (_, { id }) => tenantService.get(id).then((doc) => doc);
 
 const TenantType = new GraphQLObjectType({
   name: "Tenant",
@@ -35,7 +37,6 @@ const schema = new GraphQLSchema({
 
 router.use('/', graphqlHTTP({
   schema,
-  rootValue: root,
   graphiql: true
 }));
 
