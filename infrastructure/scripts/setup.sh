@@ -7,12 +7,15 @@ MONGODB3=`ping -c 1 mongo3 | head -1  | cut -d "(" -f 2 | cut -d ")" -f 1`
 echo "Waiting for startup.."
 until curl http://${MONGODB1}:28017/serverStatus\?text\=1 2>&1 | grep uptime | head -1; do
   printf '.'
-  sleep 1
+  sleep 20
 done
 
 echo curl http://${MONGODB1}:28017/serverStatus\?text\=1 2>&1 | grep uptime | head -1
 echo "Started.."
 
+sleep 20
+
+curl http://${MONGODB1}:28017/serverStatus\?text\=1
 
 echo SETUP.sh time now: `date +"%T" `
 mongo --host ${MONGODB1}:27017 <<EOF

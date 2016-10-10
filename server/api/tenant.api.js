@@ -12,9 +12,9 @@ const ObjectId = Schema.ObjectId;
 const TenantSchema = new Schema({ id: ObjectId, name: String });
 const Tenant = mongoose.model('tenant', TenantSchema);
 
-// curl 'http://localhost:8080/api/tenant/test'
+// curl 'http://localhost:8080/api/tenant/<id>'
 const getTenant = (req, res) => {
-  Tenant.find({ name: req.params.name }, (err, doc) => {
+  Tenant.find({ _id: req.params.id }, (err, doc) => {
     return res.json(doc);
   });
 };
@@ -26,23 +26,23 @@ const createTenant = (req, res) => {
   });
 };
 
-// curl -H "Content-Type: application/json" -XPUT 'http://localhost:8080/api/tenant/test' -d '{ "name": "testy" }'
+// curl -H "Content-Type: application/json" -XPUT 'http://localhost:8080/api/tenant/<id>' -d '{ "name": "testy" }'
 const updateTenant = (req, res) => {
-  Tenant.update({ name: req.params.name }, req.body, (err, doc) => {
+  Tenant.update({ _id: req.params.id }, req.body, (err, doc) => {
     return res.json(doc);
   });
 };
 
-// curl -H "Content-Type: application/json" -XDELETE 'http://localhost:8080/api/tenant/test'
+// curl -H "Content-Type: application/json" -XDELETE 'http://localhost:8080/api/tenant/<id>'
 const deleteTenant = (req, res) => {
-  Tenant.remove({ name: req.params.name }, (err, doc) => {
+  Tenant.remove({ _id: req.params.id }, (err, doc) => {
     return res.json(doc);
   });
 };
 
-router.get('/:name', getTenant);
+router.get('/:id', getTenant);
 router.post('/', createTenant);
-router.put('/:name', updateTenant);
-router.delete('/:name', deleteTenant);
+router.put('/:id', updateTenant);
+router.delete('/:id', deleteTenant);
 
 export default router;

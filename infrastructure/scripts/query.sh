@@ -12,14 +12,14 @@ echo "Writing to MongoDB"
 mongo ${MONGODB1} <<EOF
   use transporter-collection
   rs.config()
-  var p = { message: "Hello World" }
-  db.entries.save(p)
+  var p = { name: "Mr. Tenant" }
+  db.tenants.save(p)
 EOF
 
 echo "================================="
 echo "Fetching data from Mongo"
-echo curl http://${MONGODB1}:28017/transporter-collection/entries/?limit=10
-curl http://${MONGODB1}:28017/transporter-collection/entries/?limit=10
+echo curl http://${MONGODB1}:28017/transporter-collection/tenants/?limit=10
+curl http://${MONGODB1}:28017/transporter-collection/tenants/?limit=10
 echo "================================="
 
 printf "\nReading from Elasticsearch (waiting for the transporter to start)\n\n"
