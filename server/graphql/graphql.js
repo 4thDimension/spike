@@ -1,16 +1,18 @@
 // Very basic, Kishore to improve :)
 
-import { Router } from 'express';
 import * as tenantService from '../api/tenant/tenant.service';
+
+import { GraphQLNonNull, GraphQLObjectType, GraphQLSchema, GraphQLString } from 'graphql';
+
+import { Router } from 'express';
 import graphqlHTTP from 'express-graphql';
-import { GraphQLObjectType, GraphQLString, GraphQLNonNull, GraphQLSchema } from 'graphql';
 
 const router = Router();
 
 const resolveTenant = (_, { id }) => tenantService.get(id).then((doc) => doc);
 
 const TenantType = new GraphQLObjectType({
-  name: "Tenant",
+  name: 'Tenant',
   fields: {
     _id: { type: GraphQLString },
     name: { type: GraphQLString }
