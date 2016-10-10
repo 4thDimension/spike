@@ -1,44 +1,22 @@
 // Very basic, Kishore to improve :)
 
-import express from 'express';
-import mongoose from 'mongoose';
+import * as service from './tenant.service';
 
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/transporter-collection');
+import express from 'express';
 
 const router = express.Router();
-const Schema = mongoose.Schema;
-const ObjectId = Schema.ObjectId;
-const TenantSchema = new Schema({ id: ObjectId, name: String });
-const Tenant = mongoose.model('tenant', TenantSchema);
 
 // curl 'http://localhost:8080/api/tenant/<id>'
-const getTenant = (req, res) => {
-  Tenant.find({ _id: req.params.id }, (err, doc) => {
-    return res.json(doc);
-  });
-};
+const getTenant = (req, res) => service.get(req.params.id).then((doc) => res.json(doc));
 
 // curl -H "Content-Type: application/json" -XPOST 'http://localhost:8080/api/tenant' -d '{ "name": "test" }'
-const createTenant = (req, res) => {
-  Tenant.create(req.body, (err, doc) => {
-    return res.json(doc);
-  });
-};
+const createTenant = (req, res) => service.create(req.body).then((doc) => res.json(doc));
 
 // curl -H "Content-Type: application/json" -XPUT 'http://localhost:8080/api/tenant/<id>' -d '{ "name": "testy" }'
-const updateTenant = (req, res) => {
-  Tenant.update({ _id: req.params.id }, req.body, (err, doc) => {
-    return res.json(doc);
-  });
-};
+const updateTenant = (req, res) => service.update(req.params.id, req.body).then((doc) => res.json(doc));
 
 // curl -H "Content-Type: application/json" -XDELETE 'http://localhost:8080/api/tenant/<id>'
-const deleteTenant = (req, res) => {
-  Tenant.remove({ _id: req.params.id }, (err, doc) => {
-    return res.json(doc);
-  });
-};
+const deleteTenant = (req, res) => service.del(req.params.id).then((doc) => res.json(doc));
 
 router.get('/:id', getTenant);
 router.post('/', createTenant);

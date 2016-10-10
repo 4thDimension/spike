@@ -1,19 +1,37 @@
 import express from 'express';
+import * as tenantService from './tenant.service';
 import graphqlHTTP from 'express-graphql';
-import { buildSchema } from 'graphql';
+import { GraphQLObjectType, GraphQLString, GraphQLNonNull, GraphQLSchema } from 'graphql';
 
 const router = express.Router();
-// Construct a schema, using GraphQL schema language
-const schema = buildSchema(`
-  type Query {
-    hello: String
-  }
-`);
 
-// The root provides a resolver function for each API endpoint
-const root = {
-  hello: () => 'Hello Next Home!'
-};
+const resolveTenant = (root, { id }) => tenantService.get(id).then((doc) => doc);
+
+const TenantType = new GraphQLObjectType({
+  name: "Tenant",
+  fields: {
+    _id: { type: GraphQLString },
+    name: { type: GraphQLString }
+  }
+});
+
+const schema = new GraphQLSchema({
+  query: new GraphQLObjectType({
+    types: [TenantType],
+    name: 'NextHomeQuery',
+    fields: {
+      Tenant: {
+        type: TenantType,
+        resolve: resolveTenant,
+        args: {
+          id: {
+            type: new GraphQLNonNull(GraphQLString)
+          }
+        }
+      }
+    }
+  })
+});
 
 router.use('/', graphqlHTTP({
   schema,
