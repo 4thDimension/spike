@@ -1,10 +1,15 @@
-import express from 'express';
-import graphqlHTTP from 'express-graphql';
-import { GraphQLObjectType, GraphQLString, GraphQLNonNull, GraphQLSchema } from 'graphql';
-import * as tenantService from './tenant.service';
+// Very basic, Kishore to improve :)
 
-const router = express.Router();
-const resolveTenant = (root, { id }) => tenantService.get(id).then((doc) => doc);
+import * as tenantService from '../api/tenant/tenant.service';
+
+import { GraphQLNonNull, GraphQLObjectType, GraphQLSchema, GraphQLString } from 'graphql';
+
+import { Router } from 'express';
+import graphqlHTTP from 'express-graphql';
+
+const router = Router();
+
+const resolveTenant = (_, { id }) => tenantService.get(id).then((doc) => doc);
 
 const TenantType = new GraphQLObjectType({
   name: 'Tenant',
@@ -34,7 +39,6 @@ const schema = new GraphQLSchema({
 
 router.use('/', graphqlHTTP({
   schema,
-  rootValue: root,
   graphiql: true
 }));
 

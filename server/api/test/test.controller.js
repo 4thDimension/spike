@@ -1,7 +1,7 @@
-import express from 'express';
+import { Router } from 'express';
 import jwt from 'express-jwt';
 
-const router = express.Router();
+const router = Router();
 const authCheck = jwt({
   secret: new Buffer('9lgbINHPJ1XJ1DGrRVZ6N6jbyX9gHmD0nNWkDyP3VrnYJGZog7wDLc1ixDMw0ptS', 'base64'),
   audience: 'b7Qfj5hASoI5m6RjYNZ7xC3yLpZrbtnv'
@@ -44,5 +44,7 @@ router.get('/jedis/:id', authCheck, (req, res) => {
   res.json(jedis.filter(jedi => jedi.id === parseInt(req.params.id, 10))[0]);
 });
 
-export default router;
-
+export default {
+  rootUrl: 'test',
+  router
+};

@@ -1,14 +1,11 @@
 // Very basic, Kishore to improve :)
 
-import mongoose from 'mongoose';
+import db from '../../db';
 
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/transporter-collection');
+import { Schema } from 'mongoose';
 
-const Schema = mongoose.Schema;
-const ObjectId = Schema.ObjectId;
-const TenantSchema = new Schema({ id: ObjectId, name: String });
-const Tenant = mongoose.model('tenant', TenantSchema);
+const TenantSchema = new Schema({ id: Schema.ObjectId, name: String });
+const Tenant = db.model('tenant', TenantSchema);
 
 export const get = (id) => Tenant.findById({ _id: id }, (err, doc) => doc);
 export const create = (tenant) => Tenant.create(tenant, (err, doc) => doc);
