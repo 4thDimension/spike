@@ -1,20 +1,17 @@
-// Very basic, Kishore to improve :)
-
 import bodyParser from 'body-parser';
 import compression from 'compression';
 import express from 'express';
 import glob from 'glob';
-import graphql from '../graphql/graphql';
 import helmet from 'helmet';
 import hpp from 'hpp';
 import morgan from 'morgan';
 import path from 'path';
-import renderClient from './client.bootstrap';
 import serveStatic from 'serve-static';
+import graphql from '../graphql';
+import renderClient from './client.bootstrap';
 
 const prodServer = () => {
   const server = express();
-
   server.use(morgan('combined'));
   server.use(helmet());
   server.use(hpp());
@@ -25,15 +22,14 @@ const prodServer = () => {
 
 const devServer = () => {
   const server = express();
-
   server.use(morgan('dev'));
   const config = require('../../webpack/dev');
   const webpack = require('webpack');
   const webpackDevMiddleware = require('webpack-dev-middleware');
   const webpackHotMiddleware = require('webpack-hot-middleware');
   const DashboardPlugin = require('webpack-dashboard/plugin');
-  const compiler = webpack(config);
 
+  const compiler = webpack(config);
   compiler.apply(new DashboardPlugin());
   compiler.plugin('done', () => {
     const assetsJsonPath = path.resolve(__dirname, '../..', 'assets.json');
@@ -57,6 +53,7 @@ const createServer = (isProdOrTest) => {
     const api = require(`../api/${apiPath}`).default;
     server.use(`/api/${api.rootUrl}`, api.router);
   });
+
   server.use('/graphql', graphql);
   server.use('*', renderClient);
 
