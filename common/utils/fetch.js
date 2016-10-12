@@ -14,7 +14,7 @@ const fetchWrapper = (resource, method, body) => {
     method,
     headers: {
       Accept: 'application/json',
-      'Content-Type': 'application/graphql'
+      'Content-Type': 'application/json'
     }
   };
   if (body) {
