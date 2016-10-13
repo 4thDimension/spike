@@ -1,7 +1,7 @@
 // Very basic, Kishore to improve :)
 
 import { Schema } from 'mongoose';
-import db from '../../db';
+import db from '../../core/db';
 
 const TenantSchema = new Schema({ id: Schema.ObjectId, name: String });
 const Tenant = db.model('tenant', TenantSchema);

@@ -1,8 +1,6 @@
 import { Router } from 'express';
 import * as service from './tenant.service';
 
-const router = Router();
-
 const getTenant = (req, res) => (
   service.get(req.params.id)
     .then(doc => res.json(doc))
@@ -20,6 +18,8 @@ const deleteTenant = (req, res) => (
   service.del(req.params.id)
     .then((doc) => res.json(doc))
 );
+
+const router = Router();
 
 router.get('/:id', getTenant);
 router.post('/', createTenant);
