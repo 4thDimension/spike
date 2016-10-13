@@ -1,9 +1,8 @@
 // Very basic, Kishore to improve :)
 
-import { Schema } from 'mongoose';
+import TenantSchema from './tenantSchema';
 import db from '../../core/db';
 
-const TenantSchema = new Schema({ id: Schema.ObjectId, name: String });
 const Tenant = db.model('tenant', TenantSchema);
 
 export const get = (id) => Tenant.findById({ _id: id }, (err, doc) => doc);
