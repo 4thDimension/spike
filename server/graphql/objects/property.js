@@ -1,9 +1,9 @@
 import { GraphQLObjectType, GraphQLString, GraphQLList, GraphQLNonNull } from 'graphql';
-import * as propertyService from '../api/property/property.service';
+import * as propertyService from '../../api/property/property.service';
 
 const resolve = (_, { id }) => propertyService.get(id).then((doc) => doc);
 
-export const PropertyType = new GraphQLObjectType({
+const PropertyType = new GraphQLObjectType({
   name: 'Property',
   fields: {
     _id: { type: GraphQLString },
@@ -25,7 +25,7 @@ export const PropertyType = new GraphQLObjectType({
   }
 });
 
-export const Property = {
+const Property = {
   type: PropertyType,
   resolve,
   args: {
@@ -33,4 +33,10 @@ export const Property = {
       type: new GraphQLNonNull(GraphQLString)
     }
   }
+};
+
+export default {
+  type: PropertyType,
+  object: Property,
+  name: "Property"
 };

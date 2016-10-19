@@ -1,9 +1,9 @@
 import { GraphQLObjectType, GraphQLString, GraphQLNonNull } from 'graphql';
-import * as tenantService from '../api/tenant/tenant.service';
+import * as tenantService from '../../api/tenant/tenant.service';
 
 const resolve = (_, { id }) => tenantService.get(id).then((doc) => doc);
 
-export const TenantType = new GraphQLObjectType({
+const TenantType = new GraphQLObjectType({
   name: 'Tenant',
   fields: {
     _id: { type: GraphQLString },
@@ -11,7 +11,7 @@ export const TenantType = new GraphQLObjectType({
   }
 });
 
-export const Tenant = {
+const Tenant = {
   type: TenantType,
   resolve,
   args: {
@@ -19,4 +19,10 @@ export const Tenant = {
       type: new GraphQLNonNull(GraphQLString)
     }
   }
+};
+
+export default {
+  type: TenantType,
+  object: Tenant,
+  name: "Tenant"
 };
