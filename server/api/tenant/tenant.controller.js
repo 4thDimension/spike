@@ -9,6 +9,7 @@ const getTenant = (req, res) => (
 const createTenant = (req, res) => (
   service.create(req.body).then((doc) => res.json(doc))
 );
+
 const updateTenant = (req, res) => (
   service.update(req.params.id, req.body)
     .then((doc) => res.json(doc))

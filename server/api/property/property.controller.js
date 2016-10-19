@@ -9,6 +9,7 @@ const getProperty = (req, res) => (
 const createProperty = (req, res) => (
   service.create(req.body).then((doc) => res.json(doc))
 );
+
 const updateProperty = (req, res) => (
   service.update(req.params.id, req.body)
     .then((doc) => res.json(doc))
