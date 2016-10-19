@@ -8,6 +8,7 @@ const searchTenant = (req, res) => (
   search.tenantById(req.params.id)
     .then((doc) => res.json(doc))
 );
+
 const searchProperty = (req, res) => {
   const { query, filters, options } = req.body;
   search.propertyByQuery(query, filters, options)

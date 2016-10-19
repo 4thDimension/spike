@@ -20,4 +20,3 @@ export const update = (id, property) => (
 export const del = (id) => (
   Property.remove({ _id: id }, (err, doc) => doc)
 );
-
