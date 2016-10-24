@@ -6,7 +6,7 @@ const router = Router();
 
 router.use('/', graphqlHTTP({
   schema,
-  graphiql: true
+  graphiql: !process.env.PRODUCTION
 }));
 
 export default router;
