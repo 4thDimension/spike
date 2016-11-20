@@ -1,5 +1,3 @@
-// Very basic, Kishore to improve :)
-
 import TenantSchema from './tenantSchema';
 import db from '../../core/db';
 

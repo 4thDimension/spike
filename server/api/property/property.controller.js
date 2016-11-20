@@ -28,6 +28,6 @@ router.put('/:id', updateProperty);
 router.delete('/:id', deleteProperty);
 
 export default {
-  rootUrl: "property",
+  rootUrl: 'property',
   router
 };

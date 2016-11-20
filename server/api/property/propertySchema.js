@@ -19,3 +19,4 @@ const PropertySchema = new Schema({
   tenantId: [Schema.ObjectId]
 });
 export default PropertySchema;
+

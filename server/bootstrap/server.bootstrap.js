@@ -7,7 +7,6 @@ import hpp from 'hpp';
 import morgan from 'morgan';
 import path from 'path';
 import serveStatic from 'serve-static';
-import graphql from '../graphql';
 import renderClient from './client.bootstrap';
 
 const prodServer = () => {
@@ -49,14 +48,12 @@ const createServer = (isProdOrTest) => {
   server.use(bodyParser.urlencoded({ extended: true }));
   server.use(serveStatic(path.join(__dirname, '../..', 'assets')));
   const apis = glob.sync('**/*.controller.js', { cwd: path.join(__dirname, '..', 'api') });
+
   apis.forEach((apiPath) => {
     const api = require(`../api/${apiPath}`).default;
     server.use(`/api/${api.rootUrl}`, api.router);
   });
-
-  server.use('/graphql', graphql);
   server.use('*', renderClient);
-
   return server;
 };
 

@@ -1,4 +1,3 @@
-// Very basic, Kishore to improve :)
 import { Router } from 'express';
 import * as search from './search.service';
 
@@ -19,6 +18,6 @@ router.get('/tenant/:id', searchTenant);
 router.post('/property', searchProperty);
 
 export default {
-  rootUrl: "search",
+  rootUrl: 'search',
   router
 };
