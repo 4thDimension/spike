@@ -1,11 +1,10 @@
 import { createStore, compose, applyMiddleware } from 'redux';
 import { persistState } from 'redux-devtools';
 import promiseMiddleware from 'redux-promise-middleware';
-import thunk from 'redux-thunk';
 import DevTools from '../views/app/components/DevTools';
 import createReducer from './createReducer';
 
-let enhancer = [applyMiddleware(thunk, promiseMiddleware())];
+let enhancer = [applyMiddleware(promiseMiddleware())];
 if (process.env.NODE_ENV !== 'production' && typeof window !== 'undefined') {
   enhancer = [
     ...enhancer,

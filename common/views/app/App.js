@@ -3,7 +3,6 @@ import DevTools from './components/DevTools';
 import NavigationContainer from './containers/NavigationContainer';
 import Footer from './components/Footer';
 
-require('../../../globalStyles/customBulma.scss');
 
 const propTypes = {
   children: PropTypes.any

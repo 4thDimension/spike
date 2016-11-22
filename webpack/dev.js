@@ -91,16 +91,6 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        include: [/globalStyles/],
-        exclude: [/views/],
-        loaders: [
-          'style',
-          'css',
-          'sass'
-        ],
-      },
-      {
-        test: /\.scss$/,
         exclude: [/globalStyles/],
         loaders: [
           'style',
