@@ -54,7 +54,10 @@ module.exports = {
   resolve: {
     root: path.resolve(__dirname),
     extensions: ['', '.js', '.jsx'],
-    modulesDirectories: ['node_modules']
+    modulesDirectories: ['node_modules'],
+    alias: {
+      'react/lib/ReactMount': 'react-dom/lib/ReactMount'
+    }
   },
   module: {
     preLoaders: [
