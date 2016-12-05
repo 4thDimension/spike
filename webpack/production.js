@@ -1,7 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 var autoprefixer = require('autoprefixer');
-var AssetsPlugin = require('assets-webpack-plugin');
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
@@ -27,13 +27,15 @@ module.exports = {
     ]
   },
   output: {
-    path: path.join(__dirname, '..', '/assets/dist'),
+    path: path.join(__dirname, '..', 'dist'),
     filename: '[name]_[chunkhash].js',
     chunkFilename: '[name]_[chunkhash].js',
     publicPath: '/dist/'
   },
   plugins: [
-    new AssetsPlugin({ filename: 'assets.json' }),
+    new BundleAnalyzerPlugin({
+      generateStatsFile: true
+    }),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: '"production"'
@@ -81,16 +83,6 @@ module.exports = {
       { test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192' },
       {
         test: /\.scss$/,
-        include: [/globalStyles/],
-        exclude: [/javascript/],
-        loader: ExtractTextPlugin.extract(
-          'style',
-          'css?sourceMap!postcss!sass?sourceMap'
-        )
-      },
-      {
-        test: /\.scss$/,
-        exclude: [/globalStyles/],
         loader: ExtractTextPlugin.extract(
           'style',
           'css?modules&importLoaders=2&localIdentName=[name]__[local]___[hash:base64:5]',

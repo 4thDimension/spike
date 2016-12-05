@@ -1,26 +1,13 @@
 import { createStore, compose, applyMiddleware } from 'redux';
-import { persistState } from 'redux-devtools';
+import thunk from 'redux-thunk';
 import promiseMiddleware from 'redux-promise-middleware';
-import DevTools from '../views/app/components/DevTools';
 import createReducer from './createReducer';
-
-let enhancer = [applyMiddleware(promiseMiddleware())];
-if (process.env.NODE_ENV !== 'production' && typeof window !== 'undefined') {
-  enhancer = [
-    ...enhancer,
-    DevTools.instrument(),
-    persistState(
-      window.location.href.match(
-        /[?&]debug_session=([^&#])\b/
-      )
-    )
-  ];
-}
-
-const composedEnhancer = compose(...enhancer);
 
 /* eslint global-require: 0 */
 export default function configureStore(initialState = {}) {
+  const composedEnhancer = compose(
+    applyMiddleware(promiseMiddleware(), thunk)
+  );
   const store = createStore(createReducer(), initialState, composedEnhancer);
   store.asyncReducers = {};
 

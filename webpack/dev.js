@@ -3,8 +3,6 @@ var webpack = require('webpack');
 var autoprefixer = require('autoprefixer');
 var AssetsPlugin = require('assets-webpack-plugin');
 var DashboardPlugin = require('webpack-dashboard/plugin');
-
-console.log(path.join(__dirname, '..', '/assets/dist'));
 module.exports = {
   devtool: '#source-map',
   entry: {
@@ -30,7 +28,7 @@ module.exports = {
     ]
   },
   output: {
-    path: path.join(__dirname, '..', '/assets/dist'),
+    path: path.join(__dirname, '..', 'dist'),
     pathinfo: true,
     filename: '[name]_[hash].js',
     chunkFilename: '[name]_[hash].js',
@@ -94,7 +92,6 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        exclude: [/globalStyles/],
         loaders: [
           'style',
           'css?modules&importLoaders=2&localIdentName=[name]__[local]__[hash:base64:5]',
