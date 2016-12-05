@@ -1,9 +1,7 @@
-:global(.nav-item) .logo {
-  max-height: 100%;
-}
-
-.headerNav:global(.nav) {
-  box-shadow: 1px 2px 2px #eee;
+.nav {
+  background: transparent;
+  border-radius: 0;
+  margin-bottom: 0;
 }
 .login {
   cursor: pointer;

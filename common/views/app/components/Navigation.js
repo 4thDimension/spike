@@ -26,26 +26,30 @@ class Navigation extends Component {
     const { isAuthenticated, profile } = this.props.authInfo;
     const { username } = profile || {};
     return (
-      <Navbar>
+      <Navbar collapseOnSelect bsStyle="default">
         <Navbar.Header>
           <Navbar.Brand>
             <Link to="/">Next Home </Link>
           </Navbar.Brand>
         </Navbar.Header>
-        <Nav>
-          <NavItem>What</NavItem>
-          <NavItem>Why</NavItem>
-          <NavItem>Who</NavItem>
-          <NavItem>
-            <span className="nav-item" onClick={this.handleLoginAction}>
-              {
-                isAuthenticated
-                  ? username
-                  : 'Login'
-              }
-            </span>
-          </NavItem>
-        </Nav>
+        <Navbar.Collapse>
+          <Nav>
+            <NavItem>What</NavItem>
+            <NavItem>Why</NavItem>
+            <NavItem>Who</NavItem>
+          </Nav>
+          <Nav pullRight>
+            <NavItem eventKey={1} href="#">
+              <span className="nav-item" onClick={this.handleLoginAction}>
+                {
+                  isAuthenticated
+                    ? username
+                    : 'Login'
+                }
+              </span>
+            </NavItem>
+          </Nav>
+        </Navbar.Collapse>
       </Navbar>
     );
   }
