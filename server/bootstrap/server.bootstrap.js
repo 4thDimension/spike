@@ -31,8 +31,8 @@ const devServer = () => {
   const compiler = webpack(config);
   compiler.apply(new DashboardPlugin());
   compiler.plugin('done', () => {
-    const assetsJsonPath = path.resolve(__dirname, '../..', 'assets.json');
-    delete require.cache[assetsJsonPath];
+    // const assetsJsonPath = path.resolve(__dirname, '../..', 'assets.json');
+    // delete require.cache[assetsJsonPath];
   });
   server.use(webpackDevMiddleware(compiler, { publicPath: '/dist/', quiet: true }));
   server.use(webpackHotMiddleware(compiler, { log: console.log }));

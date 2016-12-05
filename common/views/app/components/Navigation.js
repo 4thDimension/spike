@@ -2,7 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import CSSModules from 'react-css-modules';
 import { Link } from 'react-router';
 import css from '../styles/navigation.scss';
-import { post } from '../../../utils/fetch';
+// import { post } from '../../../utils/fetch';
 
 const propTypes = {
   location: PropTypes.object,
@@ -18,17 +18,6 @@ class Navigation extends Component {
   }
   componentDidMount() {
     // GraphQL client test
-    const query = `query NextHomeQuery($id: String!) {
-      Tenant(id: $id) {
-        _id,
-        name
-      }
-    }`;
-
-    post('/graphql', {
-      query,
-      variables: { id: '57fae83ef3cf1c1fba1a3134' }
-    });
   }
 
   handleLoginAction() {
