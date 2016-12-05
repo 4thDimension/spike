@@ -6,7 +6,7 @@ const Footer = () => (
   <footer className="footer">
     <div className="container">
       <div className="content has-text-centered">
-        Copyright© 2016. Next Home
+        Copyright© 2016. Fourth Dimension Pvt Ltd
       </div>
     </div>
   </footer>

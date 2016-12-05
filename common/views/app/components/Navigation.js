@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import CSSModules from 'react-css-modules';
 import { Link } from 'react-router';
+import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import css from '../styles/navigation.scss';
 
 const propTypes = {
@@ -25,34 +26,27 @@ class Navigation extends Component {
     const { isAuthenticated, profile } = this.props.authInfo;
     const { username } = profile || {};
     return (
-      <nav className="nav" styleName="headerNav">
-        <div className="nav-left">
-          <div className="nav-item">
-            <h2>
-              Next
-              <span className="icon is-medium">
-                <i className="fa fa-home" />
-              </span>
-              ome
-            </h2>
-          </div>
-        </div>
-        <div className="nav-right nav-menu">
-          <Link className="nav-item" to="/why">
-            What
-          </Link>
-          <Link className="nav-item" to="/who">
-            Who
-          </Link>
-          <a className="nav-item" onClick={this.handleLoginAction}>
-            {
-              isAuthenticated
-                ? username
-                : 'Login'
-            }
-          </a>
-        </div>
-      </nav>
+      <Navbar>
+        <Navbar.Header>
+          <Navbar.Brand>
+            <Link to="/">Next Home </Link>
+          </Navbar.Brand>
+        </Navbar.Header>
+        <Nav>
+          <NavItem>What</NavItem>
+          <NavItem>Why</NavItem>
+          <NavItem>Who</NavItem>
+          <NavItem>
+            <span className="nav-item" onClick={this.handleLoginAction}>
+              {
+                isAuthenticated
+                  ? username
+                  : 'Login'
+              }
+            </span>
+          </NavItem>
+        </Nav>
+      </Navbar>
     );
   }
 }

@@ -53,6 +53,7 @@ const createServer = (isProdOrTest) => {
     const api = require(`../api/${apiPath}`).default;
     server.use(`/api/${api.rootUrl}`, api.router);
   });
+
   server.use('*', renderClient);
   return server;
 };

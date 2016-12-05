@@ -1,23 +1,25 @@
 import React from 'react';
 import CSSModules from 'react-css-modules';
+// import { Jumbotron, Button } from 'react-bootstrap';
 import css from '../styles/home.scss';
-
+/* eslint jsx-a11y/href-no-hash:0 */
 const Home = () => (
-  <div>
-    <section className="hero is-fullheight" styleName="hero">
-      <div className="hero-body">
-        <div className="container">
-          <h1 className="title">
-            Next <span className="icon is-medium">
-              <i className="fa fa-home" />
-            </span>ome
-          </h1>
-          <h2 className="subtitle">
-            Next Generation Renting App
-          </h2>
-        </div>
-      </div>
-    </section>
+  <div className="jumbotron" styleName="hero">
+    <div className="container">
+      <h1 className="display-3">
+        Next Home
+      </h1>
+      <p className="lead">
+        Next Generation Renting APP,
+        No More Paper Work.
+      </p>
+
+      <p className="lead">
+        <a className="btn btn-primary btn-lg" href="#">
+          Learn more
+        </a>
+      </p>
+    </div>
   </div>
 );
 

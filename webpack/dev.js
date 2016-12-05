@@ -10,6 +10,7 @@ module.exports = {
       'webpack/hot/only-dev-server',
       'webpack-hot-middleware/client',
       'font-awesome-loader',
+      'bootstrap-loader',
       './client/index'
     ],
     vendor: [

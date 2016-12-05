@@ -9,6 +9,7 @@ module.exports = {
   entry: {
     app: [
       'font-awesome-loader',
+      'bootstrap-loader/extractStyles',
       './client/index'
     ],
     vendor: [

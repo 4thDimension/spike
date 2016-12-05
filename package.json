@@ -62,6 +62,7 @@
   "dependencies": {
     "auth0-lock": "^10.4.0",
     "body-parser": "^1.15.2",
+    "bootstrap-sass": "^3.3.7",
     "compression": "^1.6.2",
     "cors": "^2.8.1",
     "css-modules-require-hook": "^4.0.3",
@@ -79,6 +80,7 @@
     "morgan": "^1.7.0",
     "react": "^15.3.1",
     "react-addons-shallow-compare": "^15.3.1",
+    "react-bootstrap": "^0.30.7",
     "react-css-modules": "^3.7.10",
     "react-dom": "^15.3.1",
     "react-helmet": "^3.1.0",
