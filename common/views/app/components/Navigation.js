@@ -24,7 +24,7 @@ class Navigation extends Component {
   }
   render() {
     const { isAuthenticated, profile } = this.props.authInfo;
-    const { username } = profile || {};
+    const { nickname } = profile || {};
     return (
       <Navbar collapseOnSelect bsStyle="default">
         <Navbar.Header>
@@ -43,7 +43,7 @@ class Navigation extends Component {
               <span className="nav-item" onClick={this.handleLoginAction}>
                 {
                   isAuthenticated
-                    ? username
+                    ? nickname
                     : 'Login'
                 }
               </span>

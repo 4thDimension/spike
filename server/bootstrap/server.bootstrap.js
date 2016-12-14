@@ -8,6 +8,8 @@ import morgan from 'morgan';
 import path from 'path';
 import serveStatic from 'serve-static';
 import renderClient from './client.bootstrap';
+import jwt from 'express-jwt';
+import jwksRsa from 'jwks-rsa';
 
 const prodServer = () => {
   const server = express();
@@ -49,9 +51,28 @@ const createServer = (isProdOrTest) => {
   server.use(serveStatic(path.join(__dirname, '../..', 'assets')));
   const apis = glob.sync('**/*.controller.js', { cwd: path.join(__dirname, '..', 'api') });
 
+  server.use('/api/*', jwt({
+    secret: jwksRsa.expressJwtSecret({
+      cache: true,
+      rateLimit: true,
+      jwksRequestsPerMinute: 5,
+      jwksUri: `https://nexthome.au.auth0.com/.well-known/jwks.json`
+    }),
+    audience: 'b7Qfj5hASoI5m6RjYNZ7xC3yLpZrbtnv',
+    issuer: 'https://nexthome.au.auth0.com/',
+    algorithms: [ 'RS256' ]
+  }));
+
+
   apis.forEach((apiPath) => {
     const api = require(`../api/${apiPath}`).default;
     server.use(`/api/${api.rootUrl}`, api.router);
+  });
+
+  server.use(function (err, req, res, next) {
+    if (err.name === 'UnauthorizedError') {
+      res.status(401).json({message:'Missing or invalid token'});
+    }
   });
 
   server.use('*', renderClient);
