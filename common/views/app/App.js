@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 import NavigationContainer from './containers/NavigationContainer';
 import Footer from './components/Footer';
 
-
 const propTypes = {
   children: PropTypes.any
 };

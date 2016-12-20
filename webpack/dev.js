@@ -89,7 +89,7 @@ module.exports = {
           'style',
           'css',
           'postcss'
-        ],
+        ]
       },
       {
         test: /\.scss$/,

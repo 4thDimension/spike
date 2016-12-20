@@ -2,6 +2,7 @@ import React from 'react';
 import CSSModules from 'react-css-modules';
 // import { Jumbotron, Button } from 'react-bootstrap';
 import css from '../styles/home.scss';
+
 /* eslint jsx-a11y/href-no-hash:0 */
 const Home = () => (
   <div className="jumbotron" styleName="hero">
