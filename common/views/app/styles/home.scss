@@ -4,7 +4,29 @@
   background-size: cover;
   color: #FFF;
   text-align: center;
+  margin-top: -70px;
+  height: 600px;
+  background-attachment: fixed;
+  background-position: center;
+  z-index: 2;
 }
 .grayText {
   color: #eeeeee;
+}
+
+.tenantSection {
+  height: 400px;
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: #000;
+  background: url(http://canvashtml-cdn.semicolonweb.com/images/grid.png);
 }

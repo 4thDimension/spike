@@ -1,3 +1,13 @@
-.navbar-default {
-  background-color: $gray-base;
+.navbar {
+  margin: 0;
+  background: transparent;
+  height: 70px;
+  padding: 7px 0;
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid rgba(0,0,0,1.5);
+  border-bottom-color: rgba(255, 255, 255, 0.15);
+  position: relative;
+  z-index: 100;
 }
+
