@@ -29,7 +29,11 @@ class Navigation extends Component {
       <Navbar collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
-            <Link to="/">next Home</Link>
+            <Link to="/">
+              <div styleName="logo">
+                <span>NEXT</span> <span className="aqua">HOME</span>
+              </div>
+            </Link>
           </Navbar.Brand>
         </Navbar.Header>
         <Navbar.Collapse>

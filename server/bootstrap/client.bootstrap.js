@@ -61,7 +61,7 @@ const renderClient = (req, res) => {
       dispatch
     };
 
-    trigger('fetch', components, locals)
+    return trigger('fetch', components, locals)
       .then(() => {
         const initialState = store.getState();
         const InitialView = (
