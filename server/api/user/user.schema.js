@@ -1,5 +1,8 @@
 import { Schema } from 'mongoose';
+import db from '../../core/db';
+import AmenitySchema from '../amenity/amenity.schema';
 
+const Amenity = db.model('Amenity', AmenitySchema);
 const UserSchema = new Schema({
   id: Schema.ObjectId, //TODO: double check if we need this field
   userId: String,
@@ -85,6 +88,7 @@ const UserSchema = new Schema({
       ref: 'Property'
     }
   ],
+  userType: String,
   agencyName: String,
 
   updated: { type: Date, default: Date.now },

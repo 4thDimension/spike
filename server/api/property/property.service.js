@@ -1,7 +1,7 @@
-import PropertySchema from './propertySchema';
+import PropertySchema from './property.schema';
 import db from '../../core/db';
 
-const Property = db.model('property', PropertySchema);
+const Property = db.model('Property', PropertySchema);
 
 export const get = (id) => (
   Property.findById({ _id: id }, (err, doc) => doc)

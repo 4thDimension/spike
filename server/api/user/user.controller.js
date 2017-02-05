@@ -7,7 +7,8 @@ const getUser = (req, res) => (
 );
 
 const createUser = (req, res) => (
-  service.create(req.body).then((doc) => res.json(doc))
+  service.create(req.body)
+    .then((doc) => res.json(doc))
 );
 
 const updateUser = (req, res) => (
